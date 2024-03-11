@@ -1,4 +1,5 @@
 # Santex RBI Team - Front End Training Challenge
+Note of the developer: I needed to change the entire project to vite, because it had errors when working.
 
 Quick challenge to help candidates to join RBI Team to catch up with currently used technologies
 
