@@ -2,10 +2,9 @@
 Note of the developer: I needed to change the entire project to vite, because it had errors when working.
 for install:
 
-''' npm install --legacy-peer-deps '''
+### ` npm install --legacy-peer-deps `
 and 
-
-''' npm run dev '''
+### ` npm run dev `
 
 
 Quick challenge to help candidates to join RBI Team to catch up with currently used technologies
