@@ -1,8 +1,8 @@
 import { useQuery, } from '@apollo/client';
-import { GET_PRODUCTS_PAGINATED } from '../graphql/queries';
+import { GET_PRODUCTS_PAGINATED } from '../../graphql/queries';
 import { StyledProductList } from './StyledProductList';
 import { GetProductsPaginatedQueryResponse, GetProductsPaginatedVariables, ProductInterface } from './ProductList.schema';
-import { Product } from './Product';
+import { Product } from '../Product/Product';
 import { useEffect, useState, } from 'react';
 
 export function ProductList() {

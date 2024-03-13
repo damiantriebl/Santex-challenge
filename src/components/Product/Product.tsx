@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { AssetInterface, VariantInterface } from "./ProductList.schema";
-import { StyledButton } from "./StyledButton";
+import { AssetInterface, VariantInterface } from "../ProductList/ProductList.schema";
+import { StyledButton } from "../StyledButton";
 import { StyledProduct } from "./StyledProduct";
-import { Modal } from './Modal';
+import { Modal } from '../Modal/Modal';
 import { useMutation, useQuery } from '@apollo/client';
-import { ADD_ITEM_TO_ORDER } from '../graphql/mutations';
-import { GET_ACTIVE_ORDER_SUBTOTAL } from '../graphql/queries';
+import { ADD_ITEM_TO_ORDER } from '../../graphql/mutations';
+import { GET_ACTIVE_ORDER_SUBTOTAL } from '../../graphql/queries';
 import { createPortal } from 'react-dom';
 
 interface ProductProps {
