@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AssetInterface, VariantInterface } from "../ProductList/ProductList.schema";
 import { StyledButton } from "../StyledButton";
 import { StyledProduct } from "./StyledProduct";
@@ -21,7 +21,7 @@ export const Product = ({
     assets,
     variants,
     sale,
-    description
+    description,
 }: ProductProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,11 +39,10 @@ export const Product = ({
     const portalRoot = document.getElementById('portals');
 
     const handleBuyClick = (productVariantId: string, quantity: number) => {
-        console.log('productVariantId', productVariantId.toString(), "quantity", quantity)
         addItemToOrder({
             variables: {
-                productVariantId: "6",
-                quantity: 1,
+                productVariantId,
+                quantity: quantity || 1,
             },
         }).catch(e => {
             console.error('Error al añadir al pedido', e);

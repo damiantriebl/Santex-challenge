@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useQuery, } from '@apollo/client';
 import { GET_PRODUCTS_PAGINATED } from '../../graphql/queries';
 import { StyledProductList } from './StyledProductList';
@@ -18,7 +20,6 @@ export function ProductList() {
   });
 
   useEffect(() => {
-    console.log("productlist", { loading, error, data });
     if (data && data.products.items.length > 0) {
       setProducts(prevProducts => [...prevProducts, ...data.products.items]);
     }
@@ -65,10 +66,11 @@ export function ProductList() {
         if (product.assets.length > 0) {
           return (
             <div
-              key={product.id}
+              key={idx}
               data-last-product={isLastProduct ? "true" : undefined}
             >
-              <Product name={product.name}
+              <Product key={idx}
+                name={product.name}
                 assets={product.assets}
                 description={product.description}
                 variants={product.variants}

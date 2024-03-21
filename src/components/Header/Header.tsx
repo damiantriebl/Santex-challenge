@@ -1,3 +1,4 @@
+import React from "react";
 import { useSubtotal } from "../../hooks/useSubtotal";
 import { StyledHeader } from "./StyledHeader";
 

@@ -1,6 +1,6 @@
 export default {
         products: {
-          totalItems: 10,
+          totalItems: 1,
           items: [
             {
               name: 'Product 1',

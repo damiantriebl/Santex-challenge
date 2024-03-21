@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledProduct = styled.div<{ sale?: boolean }>`
+export const StyledProduct = styled.div<{ sale?: boolean, isHovered?: boolean }>`
   color: black;
   font-size: 1em;
   background: ${props => props.sale ? "#E0E7FF" : "white"};
