@@ -1,12 +1,9 @@
-// ProductList.test.js
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { ProductList } from './ProductList';
 import { GET_PRODUCTS_PAGINATED } from '../../graphql/queries';
 import '@testing-library/jest-dom';
-
-
 
 const mocks = [
     {
@@ -108,25 +105,53 @@ const mocks = [
         },
     },
 ];
+interface MockIntersectionObserverEntry extends IntersectionObserverEntry {
+    target: Element;
+    isIntersecting: boolean;
+    boundingClientRect: DOMRectReadOnly;
+    intersectionRatio: number;
+    intersectionRect: DOMRectReadOnly;
+    rootBounds: DOMRectReadOnly | null;
+    time: number;
+}
+
+const mockIntersectionObserver = class MockIntersectionObserver implements IntersectionObserver {
+    readonly root: Element | null = null;
+    readonly rootMargin: string = '';
+    readonly thresholds: ReadonlyArray<number> = [];
+    private callback: IntersectionObserverCallback;
+
+    constructor(callback: IntersectionObserverCallback) {
+        this.callback = callback;
+    }
+
+    observe(target: Element): void {
+        const entry: MockIntersectionObserverEntry = {
+            isIntersecting: true,
+            target,
+            boundingClientRect: target.getBoundingClientRect() as DOMRectReadOnly,
+            intersectionRatio: 1,
+            intersectionRect: target.getBoundingClientRect() as DOMRectReadOnly,
+            rootBounds: target.getBoundingClientRect() as DOMRectReadOnly,
+            time: Date.now()
+        };
+        this.callback([entry], this);
+    }
+
+    unobserve(): void {
+    }
+
+    disconnect(): void {
+    }
+
+    takeRecords(): IntersectionObserverEntry[] {
+        return [];
+    }
+};
+
 beforeAll(() => {
-    global.IntersectionObserver = class IntersectionObserver {
-        constructor(public callback: IntersectionObserverCallback) { }
-
-        observe(target: Element) {
-            this.callback([{ isIntersecting: true, target }], this);
-        }
-
-        unobserve() {
-            return null;
-        }
-
-        disconnect() {
-            return null;
-        }
-    };
+    global.IntersectionObserver = mockIntersectionObserver as typeof IntersectionObserver;
 });
-
-// Tus pruebas aquí
 
 it('muestra la lista de productos correctamente', async () => {
     const { getByText } = render(
@@ -135,9 +160,7 @@ it('muestra la lista de productos correctamente', async () => {
         </MockedProvider>
     );
 
-    // Utiliza waitFor para manejar operaciones asíncronas
     await waitFor(() => {
-        // Asegúrate de ajustar el texto esperado según tus datos mockeados
         expect(getByText('Product 1')).toBeInTheDocument();
     });
 });
