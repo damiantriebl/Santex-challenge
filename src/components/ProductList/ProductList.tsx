@@ -38,7 +38,7 @@ export function ProductList() {
           setHasMore(products.length + response.data.products.items.length < response.data.products.totalItems);
           setIsFetchingMore(false);
         }).catch(error => {
-          console.error('Error al cargar más productos', error);
+          console.error('Error to load more products', error);
           setIsFetchingMore(false);
         })
       }

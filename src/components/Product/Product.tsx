@@ -25,7 +25,7 @@ export const Product = ({
 }: ProductProps) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { data: refetch } = useQuery(GET_ACTIVE_ORDER_SUBTOTAL);
+    const { refetch } = useQuery(GET_ACTIVE_ORDER_SUBTOTAL);
 
     const [addItemToOrder, { loading, error }] = useMutation(ADD_ITEM_TO_ORDER, {
         onCompleted: () => {
@@ -45,7 +45,7 @@ export const Product = ({
                 quantity: quantity || 1,
             },
         }).catch(e => {
-            console.error('Error al añadir al pedido', e);
+            console.error('Error to add element', e);
         });
     };
 

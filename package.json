@@ -53,6 +53,8 @@
     "web-vitals": "^1.0.1"
   },
   "jest": {
+    "setupFilesAfterEnv": ["./jest.setup.js"],
+
     "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"

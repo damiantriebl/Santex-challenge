@@ -15,7 +15,6 @@ describe('Header', () => {
         });
 
         render(<Header />);
-
         expect(screen.getByText(`$ ${mockSubtotal}`)).toBeInTheDocument();
     });
 
@@ -26,9 +25,7 @@ describe('Header', () => {
             subtotal: "",
         });
 
-        // Render the Header component
         render(<Header />);
-
         expect(screen.getByText('Loading...')).toBeInTheDocument();
     });
 
@@ -49,7 +46,6 @@ describe('Header', () => {
         });
 
         render(<Header />);
-
         expect(screen.getByText(`Error: ${mockError.message}`)).toBeInTheDocument();
     });
 
